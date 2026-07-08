@@ -53,7 +53,7 @@ nav{
 /* ─ MAIN ─ */
 main{
   display:grid;
-  grid-template-columns:minmax(340px,48%) 1fr;
+  grid-template-columns:minmax(320px,38%) 1fr;
   gap:0;
   height:100%;
   overflow:hidden;
@@ -84,7 +84,7 @@ main{
 
 h1{
   font-family:'Playfair Display',Georgia,serif;
-  font-size:clamp(38px,4.2vw,66px);
+  font-size:clamp(34px,3.8vw,60px);
   font-weight:700;line-height:1.04;
   letter-spacing:-.5px;margin-bottom:18px;
   color:#211D18;
@@ -134,6 +134,8 @@ h1 em{font-style:italic;color:#B9975B}
   max-height:calc(100dvh - 60px - 40px);
   object-fit:contain;
   display:block;
+  transform:scale(1.04);
+  transform-origin:right center;
 }
 
 /* ─ MOBILE ─ */
@@ -190,7 +192,7 @@ h1 em{font-style:italic;color:#B9975B}
     overflow:visible;
   }
 
-  .showcase{max-height:none}
+  .showcase{max-height:none;transform:none}
 }
 
 @media(max-width:480px){
