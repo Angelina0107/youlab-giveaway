@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YOULAB — Розыгрыш Шокобоксов</title>
+<link rel="icon" type="image/png" sizes="64x64" href="../img/favicon-v1.png">
+<link rel="apple-touch-icon" href="../img/favicon-v1-180.png">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600;700;800&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{
+  font-family:'Inter',sans-serif;
+  height:100%;
+  overflow:hidden;
+  background:
+    radial-gradient(1100px 700px at 80% 15%, rgba(185,151,91,.07) 0%, transparent 55%),
+    radial-gradient(800px 600px at 10% 90%, rgba(185,151,91,.05) 0%, transparent 60%),
+    linear-gradient(160deg,#FBF8F3 0%,#F6F1E8 55%,#F9F5EE 100%);
+  background-attachment:fixed;
+  color:#2A2622;
+}
+
+/* ─ LAYOUT ─ */
+.shell{
+  position:relative;z-index:1;
+  height:100dvh;
+  display:grid;
+  grid-template-rows:60px 1fr;
+  overflow:hidden;
+}
+
+/* ─ NAV ─ */
+nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;
+  background:rgba(251,248,243,.7);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(185,151,91,.22);
+  flex-shrink:0;
+}
+.logo{font-size:19px;font-weight:800;letter-spacing:5px;color:#2A2622}
+.logo span{color:#B9975B}
+.nav-btn{
+  background:transparent;color:#8C744A;
+  border:1px solid rgba(185,151,91,.5);
+  padding:9px 24px;border-radius:100px;
+  font-weight:700;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;
+  cursor:pointer;text-decoration:none;
+  transition:all .2s;
+}
+.nav-btn:hover{background:#2A2622;color:#FBF8F3;border-color:#2A2622}
+
+/* ─ MAIN ─ */
+main{
+  display:grid;
+  grid-template-columns:minmax(320px,38%) 1fr;
+  gap:0;
+  height:100%;
+  overflow:hidden;
+}
+
+/* ─ LEFT: HERO ─ */
+.hero{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:28px 36px 28px 56px;
+  position:relative;
+  gap:0;
+}
+
+.pill{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(185,151,91,.08);
+  border:1px solid rgba(185,151,91,.4);
+  border-radius:100px;padding:12px 26px;
+  font-size:14px;font-weight:700;letter-spacing:2.5px;
+  text-transform:uppercase;color:#8C744A;
+  width:fit-content;margin-bottom:24px;
+}
+.dot{
+  width:8px;height:8px;background:#B9975B;
+  border-radius:50%;animation:blink 2s infinite;
+}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.55)}}
+
+h1{
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(34px,3.8vw,60px);
+  font-weight:700;line-height:1.04;
+  letter-spacing:-.5px;margin-bottom:18px;
+  color:#211D18;
+}
+h1 em{font-style:italic;color:#B9975B}
+
+.sub{
+  font-size:15px;line-height:1.65;
+  color:rgba(42,38,34,.6);
+  max-width:400px;margin-bottom:28px;
+}
+.sub strong{color:#2A2622;font-size:16px;font-weight:600}
+
+.cta{
+  display:inline-flex;align-items:center;gap:11px;
+  background:#211D18;
+  color:#FBF8F3;
+  padding:17px 34px;border-radius:14px;
+  font-size:15px;font-weight:700;text-decoration:none;
+  letter-spacing:1.5px;text-transform:uppercase;
+  width:fit-content;
+  transition:transform .15s,box-shadow .15s,background .2s;
+  box-shadow:0 8px 28px rgba(42,38,34,.18);
+}
+.cta:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(42,38,34,.24);background:#33291C}
+.cta svg{width:18px;height:18px}
+
+.stats{
+  display:flex;gap:32px;
+  margin-top:26px;padding-top:22px;
+  border-top:1px solid rgba(185,151,91,.25);
+}
+.sn{font-family:'Playfair Display',Georgia,serif;font-size:24px;font-weight:700;color:#8C744A}
+.sl{font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:rgba(42,38,34,.45);margin-top:3px}
+
+/* ─ RIGHT: BOXES ─ */
+.boxes-panel{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:20px 28px 20px 12px;
+  position:relative;
+  overflow:visible;
+}
+
+/* Одна общая раскладка всех 10 боксов */
+.showcase{
+  width:100%;height:auto;
+  max-height:calc(100dvh - 60px - 40px);
+  object-fit:contain;
+  display:block;
+  transform:scale(1.04);
+  transform-origin:right center;
+}
+
+/* ─ MOBILE ─ */
+@media(max-width:768px){
+  html,body{overflow:auto;height:auto}
+  .shell{height:auto;grid-template-rows:54px auto}
+  main{
+    grid-template-columns:1fr;
+    height:auto;overflow:visible;
+    display:flex;flex-direction:column;
+  }
+
+  .hero{
+    padding:36px 32px 32px 36px;
+    min-height:62dvh;
+    justify-content:center;
+    order:1;
+  }
+
+  .pill{font-size:12px;padding:11px 22px;margin-bottom:20px}
+
+  h1{
+    font-size:clamp(42px,11vw,62px);
+    margin-bottom:16px;
+    line-height:1.05;
+  }
+
+  .sub{
+    font-size:15px;
+    line-height:1.6;
+    max-width:100%;
+    margin-bottom:26px;
+  }
+
+  .cta{
+    width:100%;
+    justify-content:center;
+    padding:18px 28px;
+    font-size:15px;
+    border-radius:14px;
+  }
+
+  .stats{
+    gap:26px;
+    margin-top:24px;
+    padding-top:20px;
+  }
+  .sn{font-size:22px}
+  .sl{font-size:10px}
+
+  .boxes-panel{
+    order:2;
+    padding:12px 20px 28px;
+    overflow:visible;
+  }
+
+  .showcase{max-height:none;transform:none}
+}
+
+@media(max-width:480px){
+  .hero{padding:28px 24px 24px 28px;min-height:60dvh}
+  h1{font-size:clamp(38px,11vw,54px)}
+  nav{padding:0 18px}
+  .boxes-panel{padding:8px 16px 24px}
+}
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">YOU<span>LAB</span></div>
+    <a href="https://t.me/you_schastlivchik_bot" class="nav-btn" target="_blank">Участвовать →</a>
+  </nav>
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="pill"><div class="dot"></div>Розыгрыш каждую неделю</div>
+      <h1>Шанс на победу —<br><em>в твоих руках!</em></h1>
+      <p class="sub">
+        <strong>10 шокобоксов каждую неделю.</strong><br>
+        Подпишитесь на канал — и получайте призы.
+      </p>
+      <a href="https://t.me/you_schastlivchik_bot" class="cta" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.69 7.97c-.12.58-.46.72-.93.45l-2.57-1.9-1.24 1.19c-.14.14-.25.25-.52.25l.19-2.65 4.83-4.36c.21-.19-.04-.29-.32-.1L7.9 15.26l-2.52-.79c-.55-.17-.56-.55.11-.81l9.86-3.8c.45-.17.85.11.29.94z" fill="#FBF8F3"/>
+        </svg>
+        Хочу участвовать
+      </a>
+      <div class="stats">
+        <div><div class="sn">10</div><div class="sl">победителей</div></div>
+        <div><div class="sn">0₽</div><div class="sl">участие</div></div>
+        <div><div class="sn">каждую</div><div class="sl">неделю</div></div>
+      </div>
+    </section>
+
+    <!-- BOXES -->
+    <aside class="boxes-panel">
+      <img class="showcase" src="../img/boxes.webp" alt="10 шокобоксов — призы еженедельного розыгрыша">
+    </aside>
+
+  </main>
+</div>
+
+</body>
+</html>
