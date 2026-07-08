@@ -128,70 +128,13 @@ h1 em{font-style:italic;color:#B9975B}
   overflow:visible;
 }
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  grid-template-rows:repeat(2,1fr);
-  gap:14px;
-  height:calc(100dvh - 60px - 40px);
-  max-height:520px;
+/* Одна общая раскладка всех 10 боксов */
+.showcase{
+  width:100%;height:auto;
+  max-height:calc(100dvh - 60px - 40px);
+  object-fit:contain;
+  display:block;
 }
-
-/* Зоны под товары: мягкие тёплые плашки, товар без фона «парит» внутри */
-.box{
-  border-radius:18px;
-  overflow:hidden;
-  border:1px solid rgba(185,151,91,.16);
-  transition:transform .22s,box-shadow .22s,border-color .22s;
-  position:relative;
-  cursor:pointer;
-  min-height:0;
-  display:flex;align-items:center;justify-content:center;
-  padding:10%;
-}
-/* чередование тёплых нюансов — лёгкое зонирование */
-.box:nth-child(5n+1){background:linear-gradient(165deg,#F3EDE2 0%,#EDE5D6 100%)}
-.box:nth-child(5n+2){background:linear-gradient(165deg,#F5EEE9 0%,#EFE4DC 100%)}
-.box:nth-child(5n+3){background:linear-gradient(165deg,#EFEEE6 0%,#E7E6DA 100%)}
-.box:nth-child(5n+4){background:linear-gradient(165deg,#F6F0E4 0%,#EEE6D4 100%)}
-.box:nth-child(5n+5){background:linear-gradient(165deg,#F2EBE4 0%,#EAE0D4 100%)}
-
-.box:hover{
-  transform:scale(1.05) rotate(0deg)!important;
-  box-shadow:0 18px 40px rgba(42,38,34,.16);
-  border-color:rgba(185,151,91,.45);
-  z-index:10;
-}
-
-/* Лёгкие повороты — не выходят за пределы */
-.box:nth-child(1) {transform:rotate(-1.2deg) translateY(-3px)}
-.box:nth-child(2) {transform:rotate(1deg)    translateY(3px)}
-.box:nth-child(3) {transform:rotate(-.8deg)  translateY(-4px)}
-.box:nth-child(4) {transform:rotate(1.2deg)  translateY(2px)}
-.box:nth-child(5) {transform:rotate(-1deg)   translateY(-2px)}
-.box:nth-child(6) {transform:rotate(1.4deg)  translateY(4px)}
-.box:nth-child(7) {transform:rotate(-.8deg)  translateY(-3px)}
-.box:nth-child(8) {transform:rotate(.8deg)   translateY(3px)}
-.box:nth-child(9) {transform:rotate(-1.4deg) translateY(-3px)}
-.box:nth-child(10){transform:rotate(.6deg)   translateY(3px)}
-
-/* товар без фона: вписан целиком, мягкая тень под ним */
-.box img{
-  width:100%;height:100%;
-  object-fit:contain;display:block;
-  filter:drop-shadow(0 10px 18px rgba(42,38,34,.22));
-  transition:transform .25s;
-}
-.box:hover img{transform:translateY(-3px) scale(1.03)}
-
-/* Заглушка */
-.ph{
-  width:100%;height:100%;
-  display:flex;flex-direction:column;
-  align-items:center;justify-content:center;gap:6px;
-}
-.ph-i{font-size:24px;opacity:.3}
-.ph-t{font-size:9px;color:rgba(42,38,34,.3);letter-spacing:1px;text-transform:uppercase;text-align:center}
 
 /* ─ MOBILE ─ */
 @media(max-width:768px){
@@ -247,26 +190,12 @@ h1 em{font-style:italic;color:#B9975B}
     overflow:visible;
   }
 
-  .grid{
-    grid-template-columns:repeat(5,1fr);
-    grid-template-rows:repeat(2,1fr);
-    max-height:none;
-    height:auto;
-    aspect-ratio:5/2.4;
-    gap:8px;
-  }
-  .box{padding:8%;border-radius:14px}
-  .box:nth-child(n){transform:none}
-  .box:nth-child(odd){transform:rotate(-1deg) translateY(-2px)}
-  .box:nth-child(even){transform:rotate(1deg) translateY(2px)}
-  .box:hover{transform:scale(1.04)!important}
+  .showcase{max-height:none}
 }
 
 @media(max-width:480px){
   .hero{padding:28px 24px 24px 28px;min-height:60dvh}
   h1{font-size:clamp(38px,11vw,54px)}
-  .grid{aspect-ratio:5/2.6;gap:6px}
-  .ph-i,.ph-t{display:none}
   nav{padding:0 18px}
   .boxes-panel{padding:8px 16px 24px}
 }
@@ -308,46 +237,11 @@ h1 em{font-style:italic;color:#B9975B}
 
     <!-- BOXES -->
     <aside class="boxes-panel">
-      <div class="grid">
-
-        <!-- Кладите PNG без фона в img/ с именами box1.png … box10.png —
-             страница подхватит их сама; пока их нет, показываются старые jpg -->
-        <div class="box"><img data-n="1" alt="Шокобокс 1"><div class="ph"><div class="ph-i">📦</div><div class="ph-t">Бокс 1</div></div></div>
-        <div class="box"><img data-n="2" alt="Шокобокс 2"><div class="ph"><div class="ph-i">📦</div><div class="ph-t">Бокс 2</div></div></div>
-        <div class="box"><img data-n="3" alt="Шокобокс 3"><div class="ph"><div class="ph-i">📦</div><div class="ph-t">Бокс 3</div></div></div>
-        <div class="box"><img data-n="4" alt="Шокобокс 4"><div class="ph"><div class="ph-i">📦</div><div class="ph-t">Бокс 4</div></div></div>
-        <div class="box"><img data-n="5" alt="Шокобокс 5"><div class="ph"><div class="ph-i">📦</div><div class="ph-t">Бокс 5</div></div></div>
-        <div class="box"><img data-n="6" alt="Шокобокс 6"><div class="ph"><div class="ph-i">📦</div><div class="ph-t">Бокс 6</div></div></div>
-        <div class="box"><img data-n="7" alt="Шокобокс 7"><div class="ph"><div class="ph-i">📦</div><div class="ph-t">Бокс 7</div></div></div>
-        <div class="box"><img data-n="8" alt="Шокобокс 8"><div class="ph"><div class="ph-i">📦</div><div class="ph-t">Бокс 8</div></div></div>
-        <div class="box"><img data-n="9" alt="Шокобокс 9"><div class="ph"><div class="ph-i">📦</div><div class="ph-t">Бокс 9</div></div></div>
-        <div class="box"><img data-n="10" alt="Шокобокс 10"><div class="ph"><div class="ph-i">📦</div><div class="ph-t">Бокс 10</div></div></div>
-
-      </div>
+      <img class="showcase" src="img/boxes.webp" alt="10 шокобоксов — призы еженедельного розыгрыша">
     </aside>
 
   </main>
 </div>
 
-<script>
-// Пробуем png без фона, если нет — старый jpg, если и его нет — заглушка
-document.querySelectorAll('.box img').forEach(img=>{
-  const n = img.dataset.n;
-  const ph = img.nextElementSibling;
-  if(ph) ph.style.display='none';
-  img.onerror = ()=>{
-    if(img.src.endsWith('.png')){
-      img.src = `img/box${n}.jpg`;
-      // у jpg фон не прозрачный — вписываем аккуратно, без тени
-      img.style.filter = 'none';
-      img.style.borderRadius = '10px';
-    } else {
-      img.style.display='none';
-      if(ph) ph.style.display='flex';
-    }
-  };
-  img.src = `img/box${n}.png`;
-});
-</script>
 </body>
 </html>
